@@ -8,15 +8,15 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
+app.use(express_1.default.json());
 app.get('/', (req, res) => {
     console.log('ok');
     res.send("hi");
 });
-// app.post('/api/v1/users', (req: Request, res: Response) => {
-//     console.log(req.body);
-//     console.log(req.body);
-//     res.send(req.body);
-// });
+app.post('/api/v1/users', (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port} welcome`);
 });

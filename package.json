@@ -7,7 +7,7 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "test": "jest"
+    "test:unit": "jest -w=1 --config ./test/jest.config.js --coverage"
   },
   "keywords": [],
   "author": "Emile Moraes",
