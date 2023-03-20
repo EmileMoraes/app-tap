@@ -14,7 +14,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.post('/api/v1/users', (req: Request, res: Response) => {
     console.log(req.body);
-    res.send(req.body);
+    res.status(201).json({id: 1})
 });
 
 app.listen(port, () => {
@@ -22,4 +22,9 @@ app.listen(port, () => {
 });
 
 
-//nome, email, senha, e cpf
+
+//TODO implementar teste unitario
+//TODO separar mais as config de express do endpoint
+//TODO fazer validacao dos campos obrigatorios usando o joi
+//TODO logica de cpf e cnpj
+//TODO implementar o swagger
