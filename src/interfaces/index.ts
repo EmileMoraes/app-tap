@@ -1,21 +1,13 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
+import { router as userCreateEndpoint} from "./user-create-enpoint";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
-app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
-    console.log('ok');
-    res.send("hi");
-});
-
-app.post('/api/v1/users', (req: Request, res: Response) => {
-    console.log(req.body);
-    res.status(201).json({id: 1})
-});
+app.use("/api/v1/", userCreateEndpoint)
 
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port} welcome`);
