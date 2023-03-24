@@ -1,5 +1,7 @@
+// @ts-ignore
 import request from 'supertest';
 import index from '../../src/interfaces/index'
+// @ts-ignore
 import express, { response} from "express";
 import * as bodyParser from "body-parser";
 
@@ -17,8 +19,6 @@ describe("UserCreateEndpoint", () => {
     test("Create user", async() => {
 
         const user = await request(index).post("/api/v1/users").send(userCreate);
-        // const addUser = user.body.data;
-        // expect(addUser).toEqual(userCreate);
         expect(response.status(201));
 
     })
