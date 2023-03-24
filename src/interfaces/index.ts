@@ -1,22 +1,15 @@
-import express, {Express, NextFunction} from 'express';
-import dotenv from 'dotenv';
+import express, {Application, NextFunction} from 'express';
 import { router as userCreateEndpoint} from "./user-create-enpoint";
 
-dotenv.config();
+const app: Application = express();
 
-const app: Express = express();
-const port = process.env.PORT;
+app.use(express.json());
 
-app.use("/api/v1/", userCreateEndpoint);
-
+app.use("/api/v1", userCreateEndpoint);
 // @ts-ignore
-app.use("/", (req: Request, res: Response, next: NextFunction): void => {
+app.get("/", (req: Request, res: Response, next: NextFunction): void => {
     // @ts-ignore
-    res.json({ message: "Catch all route." });
-});
-
-app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port} welcome`);
+    res.status(200).json({ message: "Catch all route." });
 });
 
 export default app;
