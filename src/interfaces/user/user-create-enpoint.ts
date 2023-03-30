@@ -14,8 +14,8 @@ router.get('/', (req: Request, res: Response) => {
 });
 router.post('/users', async (req: Request, res: Response) => {
     try {
-        const { name, cpf, email, password } = req.body;
-        let newUser = {name, cpf, email, password};
+        const { name, cpf, cnpj, email, password } = req.body;
+        let newUser = {name, cpf,cnpj, email, password};
        await validateUserCreateSchema(newUser);
 
         // @ts-ignore
