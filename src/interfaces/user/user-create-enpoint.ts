@@ -1,25 +1,22 @@
 import {Request, Response, Router} from "express";
-import Joi from "joi";
 // @ts-ignore
 import * as JoiCpfCnpj from "joi-cpf-cnpj";
-import {validateUserCreateSchema} from "./shema/user-create";
+import {validateUserCreateSchema} from "../../application/user-create-command";
+import {UserRequest} from "./user-request";
+import {UserCreateRequestMapper} from "./mapper/user-create-request-mapper";
 
 const router = Router();
-
-let user: [] = [];
-
 
 router.get('/', (req: Request, res: Response) => {
     res.send("hi");
 });
 router.post('/users', async (req: Request, res: Response) => {
     try {
-        const { name, cpf, cnpj, email, password } = req.body;
-        let newUser = {name, cpf,cnpj, email, password};
-       await validateUserCreateSchema(newUser);
+        const payload: UserRequest = req.body;
+        const command = UserCreateRequestMapper.toCommand(payload);
+        const user = await validateUserCreateSchema(command);
+        //TODO: create a response
 
-        // @ts-ignore
-        user.push(newUser);
         console.log(user);
         res.status(201).json({data: 1})
     } catch (error) {

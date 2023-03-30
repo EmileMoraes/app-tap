@@ -1,6 +1,6 @@
-import {validateUserCreateSchema} from "../../../../src/interfaces/user/shema/user-create";
+import {validateUserCreateSchema} from "../../src/application/user-create-command";
 // @ts-ignore
-import {userCreateInvalid, userCreateValid} from "../../../mock/interfaces/user/user-create-mock";
+import {userCreateInvalid, userCreateValid} from "../mock/interfaces/user/user-create-mock";
 
 describe('userCreateSchema', ()=> {
     it('should validate user create schema and return successfully', async () =>{
