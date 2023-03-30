@@ -1,5 +1,5 @@
 import express, {Application, NextFunction} from 'express';
-import { router as userCreateEndpoint} from "./user-create-enpoint";
+import { router as userCreateEndpoint} from "./user/user-create-enpoint";
 
 const app: Application = express();
 
