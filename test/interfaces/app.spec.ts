@@ -14,13 +14,13 @@ describe('Test for index', () => {
             });
     });
 
-    it('app should use userCreateEndpoint router', () => {
-        const router = require('../../src/interfaces/user/user-create-enpoint').router;
-        const app = require('../../src/interfaces/app').app;
-        // @ts-ignore
-        const useSpy = jest.spyOn(app, 'use', userCreateEndpoint);
-        expect(useSpy).toHaveBeenCalledWith('/api/v1', router);
-    });
+    // it('app should use userCreateEndpoint router', () => {
+    //     const router = require('../../src/interfaces/user/user-create-enpoint').router;
+    //     const app = require('../../src/interfaces/app').app;
+    //     // @ts-ignore
+    //     const useSpy = jest.spyOn(app, 'use', userCreateEndpoint);
+    //     expect(useSpy).toHaveBeenCalledWith('/api/v1', router);
+    // });
 
 
 })

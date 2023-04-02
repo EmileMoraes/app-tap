@@ -2,7 +2,7 @@ import {validateUserCreateSchema} from "../../src/application/user-create-comman
 // @ts-ignore
 import {userCreateInvalid, userCreateValid} from "../mock/interfaces/user/user-create-mock";
 
-describe('userCreateSchema', ()=> {
+describe('userCreateCommand', ()=> {
     it('should validate user create schema and return successfully', async () =>{
         expect(() => validateUserCreateSchema(userCreateValid)).not.toThrow();
     });
