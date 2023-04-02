@@ -3,9 +3,9 @@ node_modules/
 dist/
 
 # JetBrains IDE
-/.idea/
+.idea/
 
-/coverage/
+coverage/
 
 # Environment
 .env
