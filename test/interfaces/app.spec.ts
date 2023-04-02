@@ -1,21 +1,14 @@
 // @ts-ignore
 import request from 'supertest';
 import {app} from '../../src/interfaces/app'
-import {Server} from "http";
 import {router as userCreateEndpoint} from "../../src/interfaces/user/user-create-enpoint";
 
-let server: Server
+//let server: Server
 
 describe('Test for index', () => {
-    beforeEach(() => {
-        server = app.listen(4000)
-    })
-    afterEach(async () => {
-        await server.close();
-    })
 
     it('should call all route', async ()=> {
-        const res = await request(server).get("/")
+        const res = await request(app).get("/")
             .then((response) => {
                 expect(response.statusCode).toBe(200);
             });
