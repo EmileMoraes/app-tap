@@ -20,8 +20,8 @@ const userCreateSchema = Joi.object({
     name: Joi.string().required(),
     cpf: joiValidator.document().cpf(),
     cnpj: joiValidator.document().cnpj(),
-    email: Joi.string().required(),
-    password: Joi.string().required(),
+    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{8,20}$')).required(),
 }).unknown(true);
 
 export function validateUserCreateSchema(userRequest: UserCreateCommand): void {

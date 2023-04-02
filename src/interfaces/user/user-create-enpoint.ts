@@ -7,17 +7,12 @@ import {UserCreateRequestMapper} from "./mapper/user-create-request-mapper";
 
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
-    res.send("hi");
-});
 router.post('/users', async (req: Request, res: Response) => {
     try {
         const payload: UserRequest = req.body;
         const command = UserCreateRequestMapper.toCommand(payload);
         const user = await validateUserCreateSchema(command);
-        //TODO: create a response
 
-        console.log(user);
         res.status(201).json({data: 1})
     } catch (error) {
         return res.status(500).json({

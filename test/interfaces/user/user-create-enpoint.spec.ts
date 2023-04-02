@@ -1,20 +1,20 @@
-// @ts-ignore
 import request from 'supertest';
-import index from '../../../src/interfaces'
+import {app} from '../../../src/interfaces/app';
 // @ts-ignore
-import express, { response} from "express";
-import * as bodyParser from "body-parser";
-// @ts-ignore
-import {userCreate} from '../../mock/interfaces/user/user-create-mock';
-
-const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+import {userCreateInvalid, userCreateValid} from "../../mock/interfaces/user/user-create-mock";
 describe("UserCreateEndpoint", () => {
-    it("Create user", async() => {
+    it("should create a new user", async() => {
+        const response = await request(app)
+            .post("/api/v1/users")
+            .send(userCreateValid)
+            .expect(201, {data: 1});
+    });
 
-        const user = await request(index).post("/api/v1/users").send(userCreate);
-        expect(response.status(201));
-
-    })
+    it("should returns 500 status code with invalid user", async() => {
+        const error = new Error('Internal Server Error');
+        const response = await request(app)
+            .post("/api/v1/users")
+            .send(userCreateInvalid)
+            .expect(500);
+    });
 })

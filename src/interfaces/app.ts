@@ -1,7 +1,7 @@
-import express, {Application, NextFunction} from 'express';
+import express, { NextFunction} from 'express';
 import { router as userCreateEndpoint} from "./user/user-create-enpoint";
 
-const app: Application = express();
+const app = express();
 
 app.use(express.json());
 
@@ -12,4 +12,4 @@ app.get("/", (req: Request, res: Response, next: NextFunction): void => {
     res.status(200).json({ message: "Catch all route." });
 });
 
-export default app;
+export{ app } ;
