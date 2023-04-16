@@ -1,8 +1,7 @@
-
 export interface MessagePayload {
-    message: string;
+  message: string;
 }
 
 export interface JoiMessagePayload extends MessagePayload {
-    path: string;
+  path: string;
 }
