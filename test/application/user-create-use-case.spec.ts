@@ -1,5 +1,4 @@
 import {UserCreateUseCase} from "../../src/application/user-create-use-case";
-// @ts-ignore
 import {userCreated, userCreatedResponse} from "../mock/application/user-mock";
 
 describe('UserCreateUseCase', ()=> {

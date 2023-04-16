@@ -11,5 +11,5 @@ export class UserCreateRequestMapper {
             userCreateResquet.email,
             userCreateResquet.password
         );
-    };
+    }
 }

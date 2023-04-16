@@ -1,6 +1,4 @@
 import Joi from "joi";
-// @ts-ignore
-import * as JoiCpfCnpj from "joi-cpf-cnpj";
 import {validateAndThrowExceptionIfInvalid} from "../error/joi-validation";
 import validator from 'cpf-cnpj-validator';
 

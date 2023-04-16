@@ -7,7 +7,8 @@ export const userCreateValid = {
 }
 export const userCreateInvalid = {
     name: "test",
-    cpf: null,
+    cpf: "",
+    cnpj: "38313108000107",
     email: "email@g.com",
     password: "123"
 }
