@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  prod:
+    container_name: appTap
+    image: apptap-prod:1.0.0
+    build:
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
+    command: npm run start:prod
+    depends_on:
+      - dynamodb
+    ports:
+      - 3002:3000
+      - 9229:9229
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - nesjs-network
+    restart: unless-stopped
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    hostname: dynamodb
+    container_name: dynamodb
+    ports:
+      - "8042:8000"
+
+networks:
+  nesjs-network:
