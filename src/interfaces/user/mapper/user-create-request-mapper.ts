@@ -1,4 +1,4 @@
-import { UserRequest } from '../user-request';
+import { UserRequest } from './user-request';
 import { UserCreateCommand } from '../../../application/user-create-command';
 
 export class UserCreateRequestMapper {
