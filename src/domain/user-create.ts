@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export type UserCreate = {
-  id: string;
+  userId: string;
   name: string;
   cpf?: string;
   cnpj?: string;

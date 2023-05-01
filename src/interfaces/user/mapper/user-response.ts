@@ -1,3 +1,3 @@
 export type UserResponse = {
-  id: string;
+  userId: string;
 };
