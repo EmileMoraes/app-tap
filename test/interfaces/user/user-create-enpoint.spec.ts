@@ -2,7 +2,7 @@
 import request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { UserModule } from '../../../src/interfaces/user/user.module';
+import { UserModule } from '../../../src/infrastructure/nestjs/user/user.module';
 
 describe('UserCreateEndpoint', () => {
   let app: INestApplication;

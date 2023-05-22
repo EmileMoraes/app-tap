@@ -1,13 +1,10 @@
 import { UserRepository } from '../../domain/user-repository';
 import { dynamoDBClient } from '../aws/aws-config';
 import { generateUserCreateId, UserCreate } from '../../domain/user-create';
-import { Injectable } from '@nestjs/common';
-import { UserCreateCommand } from '../../application/user-create-command';
+import { UserLogin } from '../../domain/user-login';
 
-@Injectable()
 export class UserDynamodbAdapter implements UserRepository {
-  //async createUser(entity: UserCreate): Promise<string | undefined> {
-  async createUser(entity: UserCreateCommand): Promise<string | undefined> {
+  async createUser(entity: UserCreate): Promise<string | undefined> {
     const userId = generateUserCreateId();
     try {
       const params = {
@@ -30,13 +27,35 @@ export class UserDynamodbAdapter implements UserRepository {
     }
   }
 
-  async findAll() {
-    const results = await dynamoDBClient()
+  async findAll(): Promise<UserCreate[] | undefined> {
+    const { Items } = await dynamoDBClient()
       .scan({
         TableName: 'users'
       })
       .promise();
+    const users = Items?.map((i) => i as UserCreate);
 
-    return results.Items;
+    return users;
+  }
+
+  async findById(userId: string): Promise<UserCreate | null> {
+    try {
+      const params = {
+        TableName: 'users',
+        ExpressionAttributeNames: {
+          '#userId': 'userId'
+        },
+        ExpressionAttributeValues: { ':userId': userId },
+        KeyConditionExpression: '#userId = :userId'
+      };
+      const { Items } = await dynamoDBClient().query(params).promise();
+      const result = Items?.length > 0 ? (Items[0] as UserCreate) : null;
+
+      console.log(result?.email, result?.password + ' in adapter');
+
+      return result;
+    } catch (e) {
+      console.log('Error', e);
+    }
   }
 }
